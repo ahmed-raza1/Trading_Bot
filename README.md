@@ -21,7 +21,6 @@ Task 3 :
   sources of information:
 
   1 Yingu 
-  2 Yingu father
   3 https://medium.com/swlh/a-full-crypto-trading-bot-in-python-aafba122bc4e
   4 https://github.com/JasonRBowling/cryptoTradingBot/blob/main/tidepool-v0.6.0.py
   5 a full course vedio using IXE cloud : https://www.youtube.com/watch?v=xfzGZB4HhEE
