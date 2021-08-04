@@ -1,1 +1,2 @@
-print(bot)
+class LiquidityProvider:
+    print(Bot)

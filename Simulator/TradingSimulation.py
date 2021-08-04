@@ -1,1 +1,2 @@
-print(bot)
+class TradingSimulation:
+    print(bot)

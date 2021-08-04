@@ -1,0 +1,2 @@
+class OrderManeger:
+    print(bot)
