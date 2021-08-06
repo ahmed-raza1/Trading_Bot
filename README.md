@@ -38,3 +38,13 @@ https://awesomeopensource.com/projects/stock-market
 
 - in Chinese: vnpy(for international market - https://www.vnpy.com/docs/cn/index.html;  https://github.com/vnpy/vnpy), pythonStock(https://github.com/zhouyantao/PythonStock), turshare(for Chinese market - http://tushare.org/; https://github.com/waditu/tushare) ...
 
+
+## PHASEs:
+- read materials(
+1. concept-"Barry Johnson - Algorithmic Trading"
+2. strategies/machine_learing-"packtlearnalgorithmictrading"
+)
+- set up api (for yahoo)
+- research different strategies
+- use machine learning
+
