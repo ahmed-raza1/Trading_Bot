@@ -43,6 +43,7 @@ https://awesomeopensource.com/projects/stock-market
 - read materials(
 1. concept-"Barry Johnson - Algorithmic Trading"
 2. strategies/machine_learing-"packtlearnalgorithmictrading"
+
 )
 - set up api (for yahoo)
 - research different strategies
