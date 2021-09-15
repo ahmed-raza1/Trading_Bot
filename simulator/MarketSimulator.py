@@ -1,0 +1,2 @@
+class MarketSimulator:
+    print(bot)
