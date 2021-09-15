@@ -12,10 +12,10 @@ class RiskManager:
     INCREMENT_RISK_LIMIT_WEEKLY_STOP_LOSS = 2 % @ total investment
     risk_limit_monthly_stop_loss = 10 % @ total investment
     INCREMENT_RISK_LIMIT_MONTHLY_STOP_LOSS = 2 % @ total investment
-    risk_limit_max_position = 5
-    INCREMENT_RISK_LIMIT_MAX_POSITION = 3
+    risk_limit_max_position = 20 % @ total investment
+    INCREMENT_RISK_LIMIT_MAX_POSITION = 2 % @ total investment
     RISK_LIMIT_MAX_POSITION_HOLDING_TIME_DAYS = 35
-    risk_limit_max_trade_size = 20 % @ total investment
+    risk_limit_max_trade_size = 10 % @ total investment
     INCREMENT_RISK_LIMIT_MAX_TRADE_SIZE = 2 % @ total investment
     last_risk_change_index = 0
 
@@ -30,6 +30,15 @@ class RiskManager:
 
     def get_position(self):
         # get current holdings
+
+    def order_risk_analysis(order):
+        if (order_investment > risk_limit_max_trade_size):
+            return False
+        if order.symbol in pnl.symbol:
+            initial_investment = pnl[order.symbol][qauntity] * price
+            total = initial_investment + order_investment
+            if total > risk_limit_max_position:
+                return False
 
     @staticmethod
     def perfomance_analysis(pnl):

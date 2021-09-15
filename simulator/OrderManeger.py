@@ -69,3 +69,6 @@ class OrderManager:
 
     def calculate_charges(order):
         # charges for the order to be deducted from the cash
+
+    def record_order(order):
+        # record orders in a file

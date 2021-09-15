@@ -1,8 +1,9 @@
 class order:
     order_id_count = 0
 
-    def __init__(id, side, qauntity, price, status, action):
+    def __init__(id, symbol, side, qauntity, price, status, action):
         self.id = id
+        self.symbol = symbol
         self.status = status
         self.side = side
         self.qauntity = qauntity
