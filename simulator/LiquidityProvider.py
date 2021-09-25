@@ -1,10 +1,18 @@
 import os
+import csv
+from binance.client import Client
 
+
+# privdie all the data and informaton
 class LiquidityProvider:
+    api_key = "reE2ToRoB9AUvIuKt82UKLIsyp5fze39ZAiERi0mz6luLbbpeUFARlEaG4h841Eq"
+    api_secret = "rOIRYpnWuT1aJwMZEfUuFrChTnjIYzWAimrP2Z9VrZGzLYthTt0YcewVtjtvMTqc"
+
     def __init__(self, symbol):
-        self.symbol = symbol
+        client = Client(api_key, api_secret)
 
     # save the data in the csv file
+
     def save_data_csv(self):
         pass
 
@@ -13,16 +21,16 @@ class LiquidityProvider:
         pass
 
     def provide_live_data(self):
-        # privide live data
-        # pathroute = os.path.abspath(os.path.dirname(__file__))
-        pathroute = os.path.abspath(os.path.join(os.getcwd(), ".."))
-        print("pathroute for upper layer", pathroute)
-        f2 = open(pathroute + '/apisetting/stocks_overview_json.json', 'r')
-        jsondata = f2.read()
-        f2.close()
-        return jsondata
+        pass
 
     @staticmethod
     def get_positions(self):
-        # provide the current holdings
+        # provide the current purchases
         pass
+
+    def get_data_hist(name):
+
+        candles = candles = client.get_klines(
+            symbol=name, interval=Client.KLINE_INTERVAL_1DAY)
+
+        return candles
