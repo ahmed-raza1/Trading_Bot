@@ -5,12 +5,7 @@ class OrderManager:
         buy_data = []
         sell_data = []
 
-    def handle_input_from_risk_manager(self, order):
-        if self.ts_2_om is not None:
-            if len(self.ts_2_om) > 0:
-                self.handle_order_from_trading_strategy(self.ts_2_om.popleft())
-        else:
-            print('simulation mode')
+        print('simulation mode')
 
     def handle_order_from_risk_manager(self, order):
         if order.order_validity:
@@ -58,7 +53,13 @@ class OrderManager:
         #         print('order not found')
 
     def execute_order(order):
-        # peroform the order
+        order = client.create_order(
+            symbol=order.symbol,
+            side=SIDE_BUY,
+            type=ORDER_TYPE_LIMIT,
+            timeInForce=TIME_IN_FORCE_GTC,
+            quantity=100,
+            price='0.00001')
 
     def order_success(self, order):
         # update the order price in the databse
