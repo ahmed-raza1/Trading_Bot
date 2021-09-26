@@ -1,15 +1,29 @@
+import talib
+from LiquidityProvider import *
+import pandas and pd
+import matplotlib as plt
+
+
 class TradingStrategy:
     def __init__(symbol):
-        # NUM_PERIODS_FAST = 3
-        K_FAST = 2 / (4)
-        ema_fast = 0
-        ema_fast_values = []
-        # NUM_PERIODS_SLOW = 7
-        K_SLOW = 2 / (8)
-        ema_slow = 0
-        ema_slow_values = []
-        apo_values = []
-        last_buy_price = 0
-        last_sell_price = 0
+        print("Strategy Initlized")
 
-    def initilize(symbol):
+    def SMA(close):
+        speriod = 10
+        lperiod = 20
+        shortSMA = ta.SMA(close, sPeriod)
+        longSMA = ta.SMA(close, lPeriod)
+        smaSell = ((shortSMA <= longSMA) & (
+            shortSMA.shift(1) >= longSMA.shift(1)))
+        smaBuy = ((shortSMA >= longSMA) & (
+            shortSMA.shift(1) <= longSMA.shift(1)))
+        return smaSell, smaBuy, shortSMA, longSMA
+
+    def RSI(close):
+        rsi = ta.RSI(close, timePeriod)
+        rsiSell = (rsi > 70) & (rsi.shift(1) <= 70)
+        rsiBuy = (rsi < 30) & (rsi.shift(1) >= 30)
+        return rsiSell, rsiBuy, rsi
+
+    @staticmethod
+    def technical(symbol):
