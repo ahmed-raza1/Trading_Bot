@@ -25,9 +25,11 @@ class LiquidityProvider:
 
     @staticmethod
     def get_positions(self):
-        # provide the current purchases
-        pass
+        account = client.get_account()
+        assets = account['balances']
+        return assets
 
+    @staticmethod
     def get_data_hist(name):
 
         candles = candles = client.get_klines(

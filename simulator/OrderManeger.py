@@ -8,13 +8,7 @@ class OrderManager:
         print('simulation mode')
 
     def handle_order_from_risk_manager(self, order):
-        if order.order_validity:
-            order = self.create_new_order(order).copy()
-            self.orders.append(order)
-            if self.om_2_gw is None:
-                print('simulation mode')
-            else:
-                self.om_2_gw.append(order.copy())
+        pass
 
     def lookup_order_by_id(self, id):
         for i in range(len(self.orders)):
