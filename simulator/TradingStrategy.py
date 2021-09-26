@@ -25,5 +25,20 @@ class TradingStrategy:
         rsiBuy = (rsi < 30) & (rsi.shift(1) >= 30)
         return rsiSell, rsiBuy, rsi
 
+    def MCAD(close):
+        speriod = 9
+        lperiod = 18
+        shortEMA = ta.EMA(close, sPeriod)
+        longEMA = ta.EMA(close, lPeriod)
+        MACD = shortEMA - longEMA
+        signal = talib.EMA(MACD, 5)
+
     @staticmethod
-    def technical(symbol):
+    def technical_plot(symbol):
+        data = LiquidityProvider.get_data_hist(symbol)
+        close = data[:, 4]
+        data['upper_band'], data['middle_band'], data['lower_band'] = ta.BBANDS(
+            close, timeperiod=20)
+        data[['close', 'upper_band', 'middle_band',
+              'lower_band']].plot(figsize=(10, 5))
+        plt.show()
