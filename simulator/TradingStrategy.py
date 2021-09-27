@@ -42,3 +42,5 @@ class TradingStrategy:
         data[['close', 'upper_band', 'middle_band',
               'lower_band']].plot(figsize=(10, 5))
         plt.show()
+
+    def strategy(close):
