@@ -50,5 +50,8 @@ class LiquidityProvider:
         return df
 
 
-# client = LiquidityProvider.get_clinet()
+client = LiquidityProvider.get_clinet()
+print(LiquidityProvider.get_positions())
+if len(LiquidityProvider.get_positions()) == 0:
+    print('null postion')
 # print(client)
