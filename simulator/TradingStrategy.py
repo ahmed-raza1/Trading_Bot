@@ -70,7 +70,7 @@ class TradingStrategy:
         last_fastd = fastd[-1]
 
         if last_macd > last_signal:
-        should_buy += 1
+            should_buy += 1
 
         if last_lowerband_crossed:
             should_buy += 1
