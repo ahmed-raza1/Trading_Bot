@@ -1,44 +1,48 @@
-import OrderManeger
+from OrderManeger import *
+from LiquidityProvider import *
+import Order
+from Order import *
 
 
 class RiskManager:
 
-    MIN_NUM_SHARES_PER_TRADE = 1
-    MAX_NUM_SHARES_PER_TRADE = 50
-    INCREMENT_NUM_SHARES_PER_TRADE = 2
-    # Beginning number of shares to buy/sell on every trade
-    num_shares_per_trade = MIN_NUM_SHARES_PER_TRADE
-    risk_limit_weekly_stop_loss = 6 % @ total investment
-    INCREMENT_RISK_LIMIT_WEEKLY_STOP_LOSS = 2 % @ total investment
-    risk_limit_monthly_stop_loss = 10 % @ total investment
-    INCREMENT_RISK_LIMIT_MONTHLY_STOP_LOSS = 2 % @ total investment
-    risk_limit_max_position = 20 % @ total investment
-    INCREMENT_RISK_LIMIT_MAX_POSITION = 2 % @ total investment
-    RISK_LIMIT_MAX_POSITION_HOLDING_TIME_DAYS = 35
-    risk_limit_max_trade_size = 10 % @ total investment
-    INCREMENT_RISK_LIMIT_MAX_TRADE_SIZE = 2 % @ total investment
+    # MIN_NUM_SHARES_PER_TRADE = 1
+    # MAX_NUM_SHARES_PER_TRADE = 50
+    # increment the amount on every consecutive trade
+    INCREMENT_NUM_SHARES_PER_TRADE = 0.1
+    investment = 500
+    risk_limit_weekly_stop_loss = 0.06  # 6 % @ total investment
+    INCREMENT_RISK_LIMIT_WEEKLY_STOP_LOSS = 0.02 * investment  # % @ total investment
+    risk_limit_monthly_stop_loss = 0.1 * investment  # @ total investment
+    INCREMENT_RISK_LIMIT_MONTHLY_STOP_LOSS = 0.02 * investment  # % @ total investment
+    risk_limit_max_position = 0.20 * investment  # % @ total investment
+    INCREMENT_RISK_LIMIT_MAX_POSITION = 0.02 * investment  # % @ total investment
+    RISK_LIMIT_MAX_POSITION_HOLDING_TIME_DAYS = 5
+    risk_limit_max_trade_size = 0.15 * investment  # % @ total investment
+    INCREMENT_RISK_LIMIT_MAX_TRADE_SIZE = 0.02 * investment  # % @ total investment
     last_risk_change_index = 0
 
     MIN_PROFIT_TO_CLOSE = num_shares_per_trade * 10
 
-    def __init__(self, order, positions):
-        print("Risk Manager intialized")
-        self.position = positions
+    # @staticmethod
+    def order_risk_analysis(symbol, side, msg):
+        if side == 'buy':
+            cleint = LiquidityProvider.get_client()
+            order_investment = client.get_asset_balance(asset=symbol)['free']
 
-    def clear_offset_positions(order):
-        # clear off the postion
-
-    def get_position(self):
-        # get current holdings
-
-    def order_risk_analysis(order):
-        if (order_investment > risk_limit_max_trade_size):
-            return False
-        if order.symbol in pnl.symbol:
-            initial_investment = pnl[order.symbol][qauntity] * price
-            total = initial_investment + order_investment
-            if total > risk_limit_max_position:
-                return False
+            if side = 'buy':
+                if msg = 'low':
+                    quant = 0.075 * RiskManager.investment
+                if msg = 'medium':
+                    quant = 0.15 * RiskManager.investment
+                if order_investment != 0:
+                    quant = RiskManager.risk_limit_max_position - \
+                        order_investment
+                    print("RisK Manager order genrated " + "order of" + symbol + " @ " allownance)
+                    id = Order.id + 1
+                    ord = Order(id, symbol, 'buy', quant, null)
+            if side = 'sell' and order_investment == 0:
+                print("Sell order rejected, coin not in holidngs")
 
     @staticmethod
     def perfomance_analysis(pnl):

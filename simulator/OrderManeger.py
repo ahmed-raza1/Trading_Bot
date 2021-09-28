@@ -1,48 +1,49 @@
 from binance.enums import *
-from order import *
+from Order import *
+from LiquidityProvider import *
 
 
 class OrderManager:
     order_data = []
 
-    def __init__(self):
+    def __init__(self, client):
         print("Order Manager intialized")
         # order_data = []
         self.buy_data = []
         self.sell_data = []
+        self.client = LiquidityProvider.get_clinet()
 
         print('simulation mode')
 
     def handle_order_from_risk_manager(self, order):
         if order.side == 'buy':
-            order = client.order_limit_buy(
-                symbol='BNBBTC',
-                quantity=100,
-                price='0.00001')
+            order = self.client.order_market_buy(
+                symbol=order.symbol,
+                quoteOrderQty=order.qauntity)
             if order != null:
-                self.buy_data.append(order)
-                order_data.append(order)
+                print("Purchase order made" + order.symbol +
+                      " for qaunitity" + order.qauntity + " @ " + order.price)
 
         if order.side == 'sell':
-            order = client.order_limit_sell(
-                symbol='BNBBTC',
-                quantity=100,
-                price='0.00001')
+            order = self.client.order_market_sell(
+                symbol=order.symbol,
+                quoteOrderQty=order.qauntity)
             if order != null:
-                self.sell_data.append(order)
-                order_data.append(order)
+                print("Sale order made" + order.symbol +
+                      " for qaunitity" + order.qauntity + " @ " + order.price)
 
-    def lookup_order_by_id(self, id):
-        for i in range(len(self.orders)):
-            if self.orders[i]['id'] == id:
-                return self.orders[i]
+    @staticmethod
+    def lookup_order_by_id(id):
+        for i in range(len(OrderManager.order_data)):
+            if OrderManager.order_data[i].id == id:
+                return OrderManager.order_data[i]
         return None
 
-    def clean_traded_orders(self):
-        order_offsets = []
-        for k in range(len(self.orders)):
-            if self.orders[k]['status'] == 'filled':
-                order_offsets.append(k)
-        if len(order_offsets):
-            for k in sorted(order_offsets, reverse=True):
-                del (self.orders[k])
+
+# client = Client("reE2ToRoB9AUvIuKt82UKLIsyp5fze39ZAiERi0mz6luLbbpeUFARlEaG4h841Eq",
+#                 "rOIRYpnWuT1aJwMZEfUuFrChTnjIYzWAimrP2Z9VrZGzLYthTt0YcewVtjtvMTqc")
+
+om = OrderManager(client)
+order1 = Order(1, 'BTC', 'buy', 0.001, 500)
+om.order_data.append(order1)
+print(om.lookup_order_by_id(1).price)
