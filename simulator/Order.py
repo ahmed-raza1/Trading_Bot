@@ -1,7 +1,7 @@
 class Order:
     id = 0
 
-    def __init__(self, id, symbol, side, qauntity):
+    def __init__(self, id, symbol, side, qauntity, price):
         self.id = id
         self.symbol = symbol
         self.side = side

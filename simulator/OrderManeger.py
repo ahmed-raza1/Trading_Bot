@@ -11,7 +11,7 @@ class OrderManager:
         # order_data = []
         self.buy_data = []
         self.sell_data = []
-        self.client = LiquidityProvider.get_clinet()
+        self.client = LiquidityProvider.get_client()
 
         print('simulation mode')
 
@@ -40,8 +40,8 @@ class OrderManager:
         return None
 
 
-# client = Client("reE2ToRoB9AUvIuKt82UKLIsyp5fze39ZAiERi0mz6luLbbpeUFARlEaG4h841Eq",
-#                 "rOIRYpnWuT1aJwMZEfUuFrChTnjIYzWAimrP2Z9VrZGzLYthTt0YcewVtjtvMTqc")
+client = Client("reE2ToRoB9AUvIuKt82UKLIsyp5fze39ZAiERi0mz6luLbbpeUFARlEaG4h841Eq",
+                "rOIRYpnWuT1aJwMZEfUuFrChTnjIYzWAimrP2Z9VrZGzLYthTt0YcewVtjtvMTqc")
 
 om = OrderManager(client)
 order1 = Order(1, 'BTC', 'buy', 0.001, 500)

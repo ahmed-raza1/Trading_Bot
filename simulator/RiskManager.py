@@ -22,7 +22,7 @@ class RiskManager:
     INCREMENT_RISK_LIMIT_MAX_TRADE_SIZE = 0.02 * investment  # % @ total investment
     last_risk_change_index = 0
 
-    MIN_PROFIT_TO_CLOSE = num_shares_per_trade * 10
+    # MIN_PROFIT_TO_CLOSE = num_shares_per_trade * 10
 
     # @staticmethod
     def order_risk_analysis(symbol, side, msg):
@@ -30,19 +30,29 @@ class RiskManager:
             cleint = LiquidityProvider.get_client()
             order_investment = client.get_asset_balance(asset=symbol)['free']
 
-            if side = 'buy':
-                if msg = 'low':
+            if side == 'buy':
+                if msg == 'low':
                     quant = 0.075 * RiskManager.investment
-                if msg = 'medium':
+                if msg == 'medium':
                     quant = 0.15 * RiskManager.investment
                 if order_investment != 0:
                     quant = RiskManager.risk_limit_max_position - \
                         order_investment
-                    print("RisK Manager order genrated " + "order of" + symbol + " @ " allownance)
+                    print("RisK Manager purchase order genrated " +
+                          "order of" + symbol + " @ " + allownance)
                     id = Order.id + 1
                     ord = Order(id, symbol, 'buy', quant, null)
-            if side = 'sell' and order_investment == 0:
+            if side == 'sell' and order_investment == 0:
                 print("Sell order rejected, coin not in holidngs")
+            elif side == 'sell':
+                if msg == 'low':
+                    quant = 0.075 * order_investment
+                if msg == 'medium':
+                    quant = 0.15 * order_investment
+                print("RisK Manager sell order genrated " +
+                      "order of" + symbol + " @ " + allownance)
+                id = Order.id + 1
+                ord = Order(id, symbol, 'sell', quant, null)
 
     @staticmethod
     def perfomance_analysis(pnl):
